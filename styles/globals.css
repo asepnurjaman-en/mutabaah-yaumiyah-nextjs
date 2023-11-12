@@ -1,5 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
+  background-color: gainsboro !important;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -13,4 +18,59 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+
+/* my style */
+.table-of-acticity {
+  border: none;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  white-space: nowrap;
+}
+.table-of-acticity thead > tr:first-child > th:first-child {
+  min-width: 200px;
+  position: sticky;
+  left: 0;
+}
+.table-of-acticity thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.table-of-acticity thead > tr > th {
+  @apply min-w-[50px] px-1
+}
+.table-of-acticity tbody > tr:hover {
+  background-color: #eeeeee;
+}
+.table-of-acticity tbody > tr > td:first-child {
+  padding: 10px;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.table-of-acticity tbody > tr:nth-child(odd) > td:not(:first-child) {
+  background-color: #fafafa;
+}
+.table-of-acticity tbody > tr > td {
+  background-color: white;
+  padding: 5px;
+}
+
+
+.button-check-activity {
+  @apply [&>svg]:text-xl cursor-pointer flex items-center justify-center w-[50px] h-[50px]
+}
+.button-check-activity[disabled] {
+  cursor: default;
+  opacity: .5;
+}
+.button-check-activity:not([disabled]):hover {
+  background-color: #eeeeee;
+}
+.button-check-activity:not([disabled]):focus,
+.button-check-activity:not([disabled]):active {
+  background-color: #dddddd;
 }
