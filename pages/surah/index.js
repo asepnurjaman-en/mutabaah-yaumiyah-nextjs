@@ -26,17 +26,26 @@ function SurahIndex(props) {
 
 	return (
 		<Layout>
-			<section>
+			<section className="p-3">
 				<div>
-					<ol>
+					<div className="grid lg:grid-cols-3 gap-3">
 						{ surah.map((item, surah_index) => (
-						<li key={surah_index}>
-							<Link href={`/surah/${item.index}`}>{item.name}</Link>
-							<div>{item.translation}</div>
-							<small>{item.ayat_count} ayat | {item.revealed}</small>
-						</li>
+						<div key={surah_index} className="bg-white rounded shadow-lg">
+							<div className="relative m-4 mb-2 [&>h4]:text-xl [&>h4]:mb-1 [&>h4]:text-slate-900 [&>h5]:text-md [&>h5]:text-slate-600">
+								<h4>{item.index}. {item.name}</h4>
+								<h5>{item.translation}</h5>
+								<small className="absolute top-0 right-0">{item.ayat_count} ayat</small>
+								<small className="absolute bottom-0 right-0">{item.revealed}</small>
+							</div>
+							<div className="mb-b p-2">
+								<Link className="btn btn-dark btn-sm w-full [&>span]:text-xs"
+									href={`/surah/${item.index}`}>
+									<span>Lihat detail</span>
+								</Link>
+							</div>
+						</div>
 						)) }
-					</ol>
+					</div>
 				</div>
 			</section>
 		</Layout>

@@ -57,52 +57,46 @@ function ActivityIndex(props) {
 		}
 	}, []);
 
-	console.log(dailyRecord);
-
 	return (
 		<Layout>
 			<section>
-				<div className="bg-white rounded shadow-lg">
+				<div>
+					<div className="inline-block sticky left-0 p-3">
+						<div className="input-group">
+							<select className="select select-accent"
+								name="choice_month" 
+								defaultValue={currentMonth} 
+								onChange={(e) => setChoiceMonth(e.target.value)}>
+								{monthNames.map((item, index) => (
+									<option key={index} value={String(index + 1).padStart(2, '0')}>{item}</option>
+								))}
+							</select>
+							<select className="select select-accent"
+								name="choice_year" 
+								defaultValue={currentYear} 
+								onChange={(e) => setChoiceYear(e.target.value)}>
+								{(() => {
+									const choice_year = [];
+									for (let index = 2; index >= 0; index--) {
+										choice_year.push(<option key={index} value={today.getFullYear() - index}>{today.getFullYear() - index}</option>);
+									}
+									return choice_year;
+								})()}
+							</select>
+						</div>
+					</div>
 					<div className="table-scroll">
 						<table className="table-of-acticity">
-							<thead className="bg-white">
+							<thead>
 								<tr>
-									<th rowSpan={2} className="bg-white">
-										<div className="input-group">
-											<select className="select select-accent"
-												name="choice_month" 
-												defaultValue={currentMonth} 
-												onChange={(e) => setChoiceMonth(e.target.value)}>
-												{monthNames.map((item, index) => (
-													<option key={index} value={String(index + 1).padStart(2, '0')}>{item}</option>
-												))}
-											</select>
-											<select className="select select-accent"
-												name="choice_year" 
-												defaultValue={currentYear} 
-												onChange={(e) => setChoiceYear(e.target.value)}>
-												{(() => {
-													const choice_year = [];
-													for (let index = 2; index >= 0; index--) {
-														choice_year.push(<option key={index} value={today.getFullYear() - index}>{today.getFullYear() - index}</option>);
-													}
-													return choice_year;
-												})()}
-											</select>
-										</div>
-									</th>
-									<th colSpan={daysInMonth}>
-										<h1 className="text-lg mb-0">Mutabaah Yaumiyah</h1>
-									</th>
-								</tr>
-								<tr>
-								{(() => {
-									const thead = [];
-									for (let index = 1; index <= daysInMonth; index++) {
-										thead.push(<th key={index} className="bg-white text-center">{index}</th>);
-									}
-									return thead;
-								})()}
+									<th className="bg-white p-2">Aktifitas</th>
+									{(() => {
+										const thead = [];
+										for (let index = 1; index <= daysInMonth; index++) {
+											thead.push(<th key={index} className="bg-white text-center">{index}</th>);
+										}
+										return thead;
+									})()}
 								</tr>
 							</thead>
 							<tbody>
